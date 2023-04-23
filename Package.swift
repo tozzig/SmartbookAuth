@@ -9,15 +9,13 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "SmartbookAuth",
-            targets: ["SmartbookAuth"]),
+            targets: ["SmartbookAuth"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/ReactiveX/RxSwift.git", exact: Version("6.5.0")),
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: Version("7.0.0")),
         .package(url: "git@github.com:tozzig/SmartbookCore.git", from: Version("0.0.3")),
-
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -35,6 +33,7 @@ let package = Package(
         ),
         .testTarget(
             name: "SmartbookAuthTests",
-            dependencies: ["SmartbookAuth"]),
+            dependencies: ["SmartbookAuth"]
+        ),
     ]
 )

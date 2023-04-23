@@ -7,9 +7,8 @@
 
 import SmartbookCore
 
-enum AuthozationAPI {
+public enum AuthozationAPI {
     case getUser(String)
     case login
     case register
-
 }
