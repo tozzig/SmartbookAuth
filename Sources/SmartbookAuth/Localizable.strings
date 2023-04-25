@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Anton Tsikhanau on 24.04.23.
+  
+*/
+
+"Login" = "Login";
+"Username" = "Username";
+"Password" = "Password";
+"Sign in" = "Sign in";
