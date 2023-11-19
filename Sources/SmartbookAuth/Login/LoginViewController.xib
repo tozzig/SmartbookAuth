@@ -39,7 +39,7 @@
                         </view>
                     </subviews>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYp-gi-ugo" customClass="ActionButton" customModule="SmartbookCore">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYp-gi-ugo" customClass="ActionButton" customModule="SmartbookCore">
                     <rect key="frame" x="16" y="368" width="361" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Mgy-rS-lyO"/>
@@ -47,22 +47,22 @@
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Button"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJq-Q6-EmZ">
-                    <rect key="frame" x="181.66666666666666" y="428" width="30" height="34"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJq-Q6-EmZ">
+                    <rect key="frame" x="181.66666666666666" y="428" width="30" height="30"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title=""/>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UOF-yg-SZc">
-                    <rect key="frame" x="157" y="760" width="79.333333333333314" height="34"/>
+                    <rect key="frame" x="157" y="764" width="79.333333333333314" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wie-IW-ZRK">
-                            <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="34"/>
+                            <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3R-Ui-xmU">
-                            <rect key="frame" x="49.333333333333343" y="0.0" width="30" height="34"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3R-Ui-xmU">
+                            <rect key="frame" x="49.333333333333343" y="0.0" width="30" height="30"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         </button>
                     </subviews>

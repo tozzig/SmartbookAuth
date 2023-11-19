@@ -44,16 +44,11 @@ final class PasswordRecoveryViewModel {
     private let flowCompletedSubject = PublishSubject<Void>()
 
     let formTitle = Driver.just(R.string.localizable.email())
-    private(set) lazy var emailValidationResult = {
-        emailSubject
-            .skip(1)
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
-            .map { [unowned self] email in
-                emailValidator.validate(email)
-            }
-            .asDriver(onErrorJustReturn: .success)
+    private lazy var emailValidation = {
+        emailSubject.map { [unowned self] email in
+            emailValidator.validate(email)
+        }
     }()
-
 
     init(authorizationService: AuthorizationServiceProtocol) {
         self.authorizationService = authorizationService
@@ -71,8 +66,12 @@ private extension PasswordRecoveryViewModel {
             .withLatestFrom(state)
             .filter { $0 == .checkEmail }
 
+        let isEmailValid = emailValidation.map(\.isValid)
+
         disposeBag.insert {
             resetPasswordTapped
+                .withLatestFrom(isEmailValid)
+                .filter { $0 }
                 .mapTo(State.loading)
                 .bind(to: state)
 
@@ -107,6 +106,17 @@ private extension PasswordRecoveryViewModel {
 }
 
 extension PasswordRecoveryViewModel: PasswordRecoveryViewModelProtocol {
+    var emailValidationResult: Driver<ValidationResult> {
+        let resetPasswordTapped = actionButtonTapSubject
+            .withLatestFrom(state)
+            .filter { $0 == .enterEmail }
+        return Observable.merge(
+            resetPasswordTapped.withLatestFrom(emailValidation),
+            emailSubject.mapTo(.success)
+        )
+        .asDriverOnErrorJustComplete()
+    }
+    
     var title: Driver<String> {
         state.compactMap {
             switch $0 {
@@ -165,7 +175,10 @@ extension PasswordRecoveryViewModel: PasswordRecoveryViewModelProtocol {
         emailSubject.asObserver()
     }
     var isButtonEnabled: Driver<Bool> {
-        emailValidationResult.map(\.isValid).startWith(false)
+        emailSubject
+            .map(\.isEmpty)
+            .map(!)
+            .asDriverOnErrorJustComplete()
     }
     var isLoading: Driver<Bool> {
         state

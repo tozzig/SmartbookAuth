@@ -56,8 +56,8 @@ private extension RegistrationViewController {
         privacyPolicyTextView.translatesAutoresizingMaskIntoConstraints = false
 
         #if DEBUG
-        loginFormView.text = "tozzig1408@gmail.com"
-        passwordFormView.text = "12345678"
+//        loginFormView.text = "tozzig1408@gmail.com"
+//        passwordFormView.text = "12345678"
         #endif
     }
 

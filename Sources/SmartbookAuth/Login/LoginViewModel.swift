@@ -48,23 +48,15 @@ final class LoginViewModel {
     let title = Driver.just(R.string.localizable.login())
     let loginFormTitle = Driver.just(R.string.localizable.username())
     let passwordFormTitle = Driver.just(R.string.localizable.password())
-    private(set) lazy var loginValidationResult = {
-        loginSubject
-            .skip(1)
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
-            .map { [unowned self] login in
-                loginValidator.validate(login)
-            }
-            .asDriver(onErrorJustReturn: .success)
+    private lazy var loginValidation = {
+        loginSubject.map { [unowned self] login in
+            loginValidator.validate(login)
+        }
     }()
-    private(set) lazy var passwordValidationResult = {
-        passwordSubject
-            .skip(1)
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
-            .map { [unowned self] password in
-                passwordValidator.validate(password)
-            }
-            .asDriver(onErrorJustReturn: .success)
+    private lazy var passwordValidation = {
+        passwordSubject.map { [unowned self] password in
+            passwordValidator.validate(password)
+        }
     }()
     let loginButtonTitle = Driver.just(R.string.localizable.signIn())
     let forgotPasswordTitle: Driver<NSAttributedString> = {
@@ -88,8 +80,13 @@ final class LoginViewModel {
 
 private extension LoginViewModel {
     func bindObservables() {
+        let areCredentialsValid = Observable
+            .combineLatest(loginValidation, passwordValidation)
+            .map { $0.0.isValid && $0.1.isValid }
         disposeBag.insert {
             loginButtonTapSubject
+                .withLatestFrom(areCredentialsValid)
+                .filter { $0 }
                 .withLatestFrom(Observable.combineLatest(loginSubject, passwordSubject)) { ($1.0, $1.1) }
                 .flatMapLatest { [unowned self] login, password in
                     authorizationService.login(email: login, password: password)
@@ -99,16 +96,31 @@ private extension LoginViewModel {
                     return .error(error)
                 }
                 .retry()
-                .subscribe(onNext: { user in
-                    print(user)
-                })
+                .bind(to: userSubject)
         }
     }
 }
 
 extension LoginViewModel: LoginViewModelProtocol {
+    var loginValidationResult: Driver<ValidationResult> {
+        Observable.merge(
+            loginButtonTapSubject.withLatestFrom(loginValidation),
+            loginSubject.mapTo(.success)
+        )
+        .asDriverOnErrorJustComplete()
+    }
+    var passwordValidationResult: RxCocoa.Driver<ValidationResult> {
+        Observable.merge(
+            loginButtonTapSubject.withLatestFrom(passwordValidation),
+            passwordSubject.mapTo(.success)
+        )
+        .asDriverOnErrorJustComplete()
+    }
+    
     var isLoginButtonEnabled: Driver<Bool> {
-        .combineLatest(loginValidationResult, passwordValidationResult) { $0.isValid && $1.isValid }.startWith(false)
+        Observable
+            .combineLatest(loginSubject, passwordSubject) { !$0.isEmpty && !$1.isEmpty }
+            .asDriverOnErrorJustComplete()
     }
     var error: Driver<Error> {
         errorSubject.asDriverOnErrorJustComplete()

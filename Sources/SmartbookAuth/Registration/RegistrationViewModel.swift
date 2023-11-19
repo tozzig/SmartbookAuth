@@ -54,23 +54,15 @@ final class RegistrationViewModel {
     let title = Driver.just(R.string.localizable.registration())
     let loginFormTitle = Driver.just(R.string.localizable.username())
     let passwordFormTitle = Driver.just(R.string.localizable.password())
-    private(set) lazy var loginValidationResult = {
-        loginSubject
-            .skip(1)
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
-            .map { [unowned self] login in
-                loginValidator.validate(login)
-            }
-            .asDriver(onErrorJustReturn: .success)
+    private lazy var loginValidation = {
+        loginSubject.map { [unowned self] login in
+            loginValidator.validate(login)
+        }
     }()
-    private(set) lazy var passwordValidationResult = {
-        passwordSubject
-            .skip(1)
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
-            .map { [unowned self] password in
-                passwordValidator.validate(password)
-            }
-            .asDriver(onErrorJustReturn: .success)
+    private lazy var passwordValidation = {
+        passwordSubject.map { [unowned self] password in
+            passwordValidator.validate(password)
+        }
     }()
     let registerButtonTitle = Driver.just(R.string.localizable.register())
     let haveAccounTitle = Driver.just(R.string.localizable.alreadyHaveAnAccount())
@@ -108,8 +100,13 @@ final class RegistrationViewModel {
 
 private extension RegistrationViewModel {
     func bindObservables() {
+        let areCredentialsValid = Observable
+            .combineLatest(loginValidation, passwordValidation)
+            .map { $0.0.isValid && $0.1.isValid }
         disposeBag.insert {
             registerButtonTapSubject
+                .withLatestFrom(areCredentialsValid)
+                .filter { $0 }
                 .withLatestFrom(Observable.combineLatest(loginSubject, passwordSubject)) { ($1.0, $1.1) }
                 .withUnretained(self)
                 .flatMapLatest { owner, credentials in
@@ -127,14 +124,29 @@ private extension RegistrationViewModel {
 }
 
 extension RegistrationViewModel: RegistrationViewModelProtocol {
+    var loginValidationResult: RxCocoa.Driver<ValidationResult> {
+        Observable.merge(
+            registerButtonTapSubject.withLatestFrom(loginValidation),
+            loginSubject.mapTo(.success)
+        )
+        .asDriverOnErrorJustComplete()
+    }
+    
+    var passwordValidationResult: RxCocoa.Driver<ValidationResult> {
+        Observable.merge(
+            registerButtonTapSubject.withLatestFrom(passwordValidation),
+            passwordSubject.mapTo(.success)
+        )
+        .asDriverOnErrorJustComplete()
+    }
 
     var isRegisterButtonEnabled: Driver<Bool> {
-        .combineLatest(
-            loginValidationResult,
-            passwordValidationResult,
-            privacyPolicySubject.asDriver(onErrorJustReturn: false)
-        ) { $0.isValid && $1.isValid && $2 }
-            .startWith(false)
+        Observable.combineLatest(
+            loginSubject,
+            passwordSubject,
+            privacyPolicySubject
+        ) { !$0.isEmpty && !$1.isEmpty && $2 }
+            .asDriver(onErrorJustReturn: false)
     }
     var error: Driver<Error> {
         errorSubject.asDriverOnErrorJustComplete()
