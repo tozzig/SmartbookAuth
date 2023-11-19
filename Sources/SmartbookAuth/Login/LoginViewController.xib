@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,8 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="SmartbookAuth">
             <connections>
                 <outlet property="actionButton" destination="SYp-gi-ugo" id="pxp-jw-hFp"/>
+                <outlet property="dontHaveAccountLabel" destination="wie-IW-ZRK" id="XAP-mu-DO2"/>
+                <outlet property="forgotPasswordButton" destination="VJq-Q6-EmZ" id="2DD-bj-rTN"/>
                 <outlet property="loginFormView" destination="9bL-be-5Pa" id="cPh-zW-cSR"/>
                 <outlet property="passwordFormView" destination="mjL-Db-juc" id="E1k-us-6oT"/>
+                <outlet property="registerButton" destination="m3R-Ui-xmU" id="az1-a5-jsd"/>
                 <outlet property="view" destination="iN0-l3-epB" id="CP2-CA-kor"/>
             </connections>
         </placeholder>
@@ -43,16 +47,40 @@
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Button"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJq-Q6-EmZ">
+                    <rect key="frame" x="181.66666666666666" y="428" width="30" height="34"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title=""/>
+                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UOF-yg-SZc">
+                    <rect key="frame" x="157" y="760" width="79.333333333333314" height="34"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wie-IW-ZRK">
+                            <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3R-Ui-xmU">
+                            <rect key="frame" x="49.333333333333343" y="0.0" width="30" height="34"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="UOF-yg-SZc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="A27-nj-BFa"/>
                 <constraint firstItem="E0J-xz-aDu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="FfO-2p-mtN"/>
                 <constraint firstItem="SYp-gi-ugo" firstAttribute="top" secondItem="E0J-xz-aDu" secondAttribute="bottom" constant="21" id="Ngf-dB-Cbs"/>
                 <constraint firstItem="SYp-gi-ugo" firstAttribute="leading" secondItem="E0J-xz-aDu" secondAttribute="leading" id="WXT-D4-o6z"/>
                 <constraint firstItem="E0J-xz-aDu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="XxL-75-1QU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="E0J-xz-aDu" secondAttribute="trailing" constant="16" id="ZZF-F0-4C7"/>
                 <constraint firstItem="E0J-xz-aDu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" priority="750" constant="24" id="cxo-Ih-AAr"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="UOF-yg-SZc" secondAttribute="bottom" constant="24" id="hty-cR-9qI"/>
+                <constraint firstItem="VJq-Q6-EmZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="nvR-aR-MNT"/>
+                <constraint firstItem="VJq-Q6-EmZ" firstAttribute="top" secondItem="SYp-gi-ugo" secondAttribute="bottom" constant="16" id="xmc-cA-NgD"/>
                 <constraint firstItem="SYp-gi-ugo" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zHK-sJ-BKb"/>
             </constraints>
             <point key="canvasLocation" x="138" y="20"/>

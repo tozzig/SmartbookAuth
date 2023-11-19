@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegistrationViewController" customModuleProvider="target">
+            <connections>
+                <outlet property="actionButton" destination="adU-En-tVk" id="pJa-ij-T6d"/>
+                <outlet property="haveAccountLabel" destination="hei-Rv-VV6" id="kGG-6U-te1"/>
+                <outlet property="loginButton" destination="oFO-vI-uhy" id="nXE-v8-czR"/>
+                <outlet property="loginFormView" destination="e7m-e0-m8S" id="Lrc-V9-5fe"/>
+                <outlet property="passwordFormView" destination="OqK-nt-QDE" id="gGR-Rl-Qaw"/>
+                <outlet property="privacyPolicySwitch" destination="FVE-QJ-CwY" id="F94-Zy-tYR"/>
+                <outlet property="privacyPolicyTextView" destination="t3S-7L-Dao" id="g2r-Wb-4gh"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="39x-bv-fnr">
+                    <rect key="frame" x="16" y="83" width="361" height="303"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="377" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="e7m-e0-m8S" customClass="FormView" customModule="SmartbookAuth">
+                            <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="377" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="OqK-nt-QDE" customClass="PasswordFormView" customModule="SmartbookAuth">
+                            <rect key="frame" x="0.0" y="136" width="361" height="128"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQp-yC-ku3">
+                            <rect key="frame" x="0.0" y="272" width="361" height="31"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="t3S-7L-Dao">
+                                    <rect key="frame" x="0.0" y="0.0" width="312" height="31"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <color key="textColor" systemColor="labelColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FVE-QJ-CwY">
+                                    <rect key="frame" x="312" y="0.0" width="51" height="31"/>
+                                </switch>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="t3S-7L-Dao" firstAttribute="height" secondItem="qQp-yC-ku3" secondAttribute="height" id="It9-sk-c1a"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adU-En-tVk" customClass="ActionButton" customModule="SmartbookCore">
+                    <rect key="frame" x="16" y="410" width="361" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="czq-ga-DHw"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gAm-AR-wwh">
+                    <rect key="frame" x="157" y="760" width="79.333333333333314" height="34"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hei-Rv-VV6">
+                            <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFO-vI-uhy">
+                            <rect key="frame" x="49.333333333333343" y="0.0" width="30" height="34"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="gAm-AR-wwh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="C10-Xx-bxj"/>
+                <constraint firstItem="adU-En-tVk" firstAttribute="top" secondItem="39x-bv-fnr" secondAttribute="bottom" constant="24" id="MWf-4K-QaS"/>
+                <constraint firstItem="adU-En-tVk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NDK-Jt-drJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gAm-AR-wwh" secondAttribute="bottom" constant="24" id="TuJ-iC-fuu"/>
+                <constraint firstItem="39x-bv-fnr" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="gRf-W3-taq"/>
+                <constraint firstItem="39x-bv-fnr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="maM-Am-T4H"/>
+                <constraint firstItem="adU-En-tVk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="qev-3u-Kj8"/>
+                <constraint firstItem="39x-bv-fnr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="y76-QZ-yW4"/>
+            </constraints>
+            <point key="canvasLocation" x="138" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
