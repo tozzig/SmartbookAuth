@@ -79,7 +79,7 @@ private extension RegistrationViewController {
             viewModel.registrationSuccessMessage
                 .observe(on: MainScheduler.asyncInstance)
                 .compactMap { [weak self] title, message in
-                    self?.showAlert(title: title, message: message, actionTitle: R.string.localizable.ok())
+                    self?.showAlert(title: title, message: message, actionTitle: "OK")
                 }
                 .flatMap { $0.rx.deallocated }
                 .bind(to: viewModel.registrationSuccessMessageRead)

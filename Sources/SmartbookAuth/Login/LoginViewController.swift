@@ -43,11 +43,6 @@ private extension LoginViewController {
         dontHaveAccountLabel.font = .systemFont(ofSize: 14)
         registerButton.setTitleColor(.main, for: [])
         registerButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
-
-#if DEBUG
-//        loginFormView.text = "tozzig1408@gmail.com"
-//        passwordFormView.text = "12345678"
-#endif
     }
 
     func bindObservables() {

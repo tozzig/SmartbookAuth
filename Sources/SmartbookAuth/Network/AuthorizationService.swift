@@ -1,6 +1,6 @@
 //
 //  AuthorizationService.swift
-//  
+//
 //
 //  Created by Anton Tsikhanau on 25.07.23.
 //
@@ -26,13 +26,13 @@ enum AuthorizationError: Int, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .userAlreadyExists:
-            return R.string.localizable.userAlreadyExists()
+            return "User already exists"
         case .wrongPassword:
-            return R.string.localizable.wrongPassword()
+            return "Wrong Password"
         case .userNotFound:
-            return R.string.localizable.userNotFound()
+            return "User not found"
         case .emailNotVerified:
-            return R.string.localizable.emailNotVerified()
+            return "Email Not Verified"
         }
     }
 }

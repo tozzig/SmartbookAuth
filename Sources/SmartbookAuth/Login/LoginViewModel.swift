@@ -1,6 +1,6 @@
 //
 //  LoginViewModel.swift
-//  
+//
 //
 //  Created by Anton Tsikhanau on 24.04.23.
 //
@@ -46,7 +46,7 @@ final class LoginViewModel {
     private let errorSubject = PublishSubject<Error>()
 
     let title = Driver.just(R.string.localizable.login())
-    let loginFormTitle = Driver.just(R.string.localizable.username())
+    let loginFormTitle = Driver.just(R.string.localizable.login())
     let passwordFormTitle = Driver.just(R.string.localizable.password())
     private lazy var loginValidation = {
         loginSubject.map { [unowned self] login in
@@ -58,7 +58,7 @@ final class LoginViewModel {
             passwordValidator.validate(password)
         }
     }()
-    let loginButtonTitle = Driver.just(R.string.localizable.signIn())
+    let loginButtonTitle = Driver.just(R.string.localizable.log_in())
     let forgotPasswordTitle: Driver<NSAttributedString> = {
         let stringAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 14),
@@ -66,11 +66,11 @@ final class LoginViewModel {
             .underlineColor: UIColor.secondaryText ?? .lightGray,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
-        let string = NSAttributedString(string: R.string.localizable.forgotPassword(), attributes: stringAttributes)
+        let string = NSAttributedString(string: R.string.localizable.forgot_your_password(), attributes: stringAttributes)
         return Driver.just(string)
     }()
-    let dontHaveAccounTitle = Driver.just(R.string.localizable.dontHaveAccountYet())
-    let registerButtonTitle = Driver.just(R.string.localizable.registerNow())
+    let dontHaveAccounTitle = Driver.just(R.string.localizable.no_account_yet())
+    let registerButtonTitle = Driver.just(R.string.localizable.register())
 
     init(authorizationService: AuthorizationServiceProtocol) {
         self.authorizationService = authorizationService

@@ -1,6 +1,6 @@
 //
 //  PasswordTextField.swift
-//  
+//
 //
 //  Created by Anton Tsikhanau on 24.04.23.
 //

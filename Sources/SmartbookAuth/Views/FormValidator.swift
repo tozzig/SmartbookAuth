@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Anton Tsikhanau on 26.07.23.
 //
@@ -58,11 +58,11 @@ struct RegexValidator: Validator {
 
 enum Validators {
     static var email: Validator {
-        RegexValidator(regexPattern: emailRegexPattern, errorMessage: R.string.localizable.wrongEmailFormat())
+        RegexValidator(regexPattern: emailRegexPattern, errorMessage: "Wrong email")
     }
 
     static var password: Validator {
-        RegexValidator(regexPattern: passwordRegexPattern, errorMessage: R.string.localizable.wrongPasswordFormat())
+        RegexValidator(regexPattern: passwordRegexPattern, errorMessage: "Wrong password")
     }
 }
 

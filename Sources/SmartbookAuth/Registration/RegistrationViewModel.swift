@@ -52,7 +52,7 @@ final class RegistrationViewModel {
     private let registrationSuccessMessageReadSubject = PublishSubject<Void>()
 
     let title = Driver.just(R.string.localizable.registration())
-    let loginFormTitle = Driver.just(R.string.localizable.username())
+    let loginFormTitle = Driver.just(R.string.localizable.login())
     let passwordFormTitle = Driver.just(R.string.localizable.password())
     private lazy var loginValidation = {
         loginSubject.map { [unowned self] login in
@@ -65,12 +65,12 @@ final class RegistrationViewModel {
         }
     }()
     let registerButtonTitle = Driver.just(R.string.localizable.register())
-    let haveAccounTitle = Driver.just(R.string.localizable.alreadyHaveAnAccount())
-    let loginButtonTitle = Driver.just(R.string.localizable.signInNow())
+    let haveAccounTitle = Driver.just("Already have an account?")
+    let loginButtonTitle = Driver.just(R.string.localizable.log_in())
     let privacyPolicyTitle: Driver<NSAttributedString> = {
         let privacyPolicyURL = URL(string: "https://smart-book.net/policy")
-        let privacyPolicy = R.string.localizable.privacyPolicy()
-        let formattedString = R.string.localizable.privacyPolicyFormat(privacyPolicy)
+        let privacyPolicy = R.string.localizable.the_privacy_policy()
+        let formattedString = R.string.localizable.i_accept() + " " + privacyPolicy
         let font = UIFont.systemFont(ofSize: 14)
         let attributedString = NSMutableAttributedString(
             string: formattedString,
@@ -155,7 +155,7 @@ extension RegistrationViewModel: RegistrationViewModelProtocol {
         loginButtonTapSubject.asDriverOnErrorJustComplete()
     }
     var registrationSuccessMessage: Observable<(String, String)> {
-        registrationSubject.mapTo((R.string.localizable.success(), R.string.localizable.emailConfirmation()))
+        registrationSubject.mapTo((R.string.localizable.success(), "A confirmation email has been sent to your address. Please follow the link to verify your account"))
     }
     var registrationCompleted: Driver<Void> {
         registrationSuccessMessageReadSubject.asDriverOnErrorJustComplete()

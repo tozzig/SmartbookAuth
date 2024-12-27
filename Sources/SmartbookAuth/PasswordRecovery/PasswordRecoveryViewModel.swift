@@ -43,7 +43,7 @@ final class PasswordRecoveryViewModel {
     private let errorSubject = PublishSubject<Error>()
     private let flowCompletedSubject = PublishSubject<Void>()
 
-    let formTitle = Driver.just(R.string.localizable.email())
+    let formTitle = Driver.just(R.string.localizable.login())
     private lazy var emailValidation = {
         emailSubject.map { [unowned self] email in
             emailValidator.validate(email)
@@ -121,9 +121,9 @@ extension PasswordRecoveryViewModel: PasswordRecoveryViewModelProtocol {
         state.compactMap {
             switch $0 {
             case .enterEmail:
-                R.string.localizable.passwordRecovery()
+                "Password recovery"
             case .checkEmail:
-                R.string.localizable.checkYourEmail()
+                R.string.localizable.check_your_email()
             case .loading:
                 nil
             }
@@ -134,9 +134,9 @@ extension PasswordRecoveryViewModel: PasswordRecoveryViewModelProtocol {
         state.compactMap {
             switch $0 {
             case .enterEmail:
-                R.string.localizable.enterYourEmail()
+                R.string.localizable.enter_login()
             case .checkEmail:
-                R.string.localizable.weHaveSentRecoveryEmail()
+                "A password recovery link has been sent to your email address"
             case .loading:
                 nil
             }
@@ -147,9 +147,9 @@ extension PasswordRecoveryViewModel: PasswordRecoveryViewModelProtocol {
         state.compactMap {
             switch $0 {
             case .enterEmail:
-                R.string.localizable.continue()
+                R.string.localizable.continue_()
             case .checkEmail:
-                R.string.localizable.letsCheck()
+                R.string.localizable.continue_()
             case .loading:
                 nil
             }

@@ -7,14 +7,14 @@
 
 import Foundation
 
-public struct User: Decodable {
-    let id: Int
-    let email: String
-    let subscription: String?
-    let purchases: String?
-    let subscriptionEnd: String?
-    let confirmed: Bool
-    let sharing: String?
+public struct User: Codable {
+    public let id: Int
+    public let email: String
+    public let subscription: String?
+    public let purchases: String?
+    public let subscriptionEnd: String?
+    public let confirmed: Bool
+    public let sharing: String?
 }
 
 extension User {

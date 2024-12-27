@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Anton Tsikhanau on 18.11.23.
 //
