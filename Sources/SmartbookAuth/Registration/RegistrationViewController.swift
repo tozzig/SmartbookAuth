@@ -54,11 +54,6 @@ private extension RegistrationViewController {
         privacyPolicyTextView.linkTextAttributes = [:]
         privacyPolicyTextView.adjustsFontForContentSizeCategory = true
         privacyPolicyTextView.translatesAutoresizingMaskIntoConstraints = false
-
-        #if DEBUG
-//        loginFormView.text = "tozzig1408@gmail.com"
-//        passwordFormView.text = "12345678"
-        #endif
     }
 
     func bindObservables() {
